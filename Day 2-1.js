@@ -1064,7 +1064,7 @@ function checkPassword(minVal,maxVal,reqChar,pass) {
 }
 
 function execute(){
-    for(i=0; i<copyArr.length; i++){
+    for(i=0; i<sourceArr.length; i++){
         checkPassword(min[i],max[i],character[i],password[i]);
     } 
 }
