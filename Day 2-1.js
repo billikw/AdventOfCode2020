@@ -1007,17 +1007,22 @@ let password = [];
 var invalidCount = 0;
 var validCount = 0;
 
+/*
+executeChecks - The main function: calls 4 functions to deconstruct the array into their own arrays, then, 
+calls the checkPassword function which tests the password against the min, max count of the character which
+the password contains.
+*/
 
-
-
-
-function processList (passwordArray) {
+function executeChecks(passwordArray) {
     getMin(passwordArray);
     getMax(passwordArray);
     getChar(passwordArray);
     getPassword(passwordArray);
+    for(i=0; i<sourceArr.length; i++){
+        checkPassword(min[i],max[i],character[i],password[i]);
+    } 
+    console.log("There are: "+invalidCount+" invalid passwords & "+validCount+" valid passwords.");
 }
-
 function getMin(passwordArray){
 
     for (i=0; i<passwordArray.length; i++){
@@ -1050,7 +1055,6 @@ function getPassword(passwordArray){
         password.push(iteration[2]);
     }
 }
-
 function checkPassword(minVal,maxVal,reqChar,pass) {
     
     let charCounter = checkCharacters(reqChar,pass);
@@ -1059,16 +1063,8 @@ function checkPassword(minVal,maxVal,reqChar,pass) {
         invalidCount++;
     } else {
         validCount++;
-    }
-    
+    }  
 }
-
-function execute(){
-    for(i=0; i<sourceArr.length; i++){
-        checkPassword(min[i],max[i],character[i],password[i]);
-    } 
-}
-
 function checkCharacters(character,password){
     let charCounter = 0;
     for(j=0; j<password.length; j++){
