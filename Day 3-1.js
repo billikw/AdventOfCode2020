@@ -323,37 +323,28 @@ const input = `.........#....#.###.........##.
 .....#..........#.#........#.#.
 `;
 
-
 let map = Array.from(input.split(`\n`));
-
-
-
-
+map.pop(); // Gets rid of the rogue blank array element at the end, due to splitting on newline.
 
 function detectTrees() {
-
     let currentTile = 0;
-    let currentTileValue;
     let squares = 0;
     let treesEncountered = 0;
 
     for(i=0; i<map.length; i++){
 
-        if (map[i].charAt(currentTile) != undefined) {
-            let currentChar = map[i].charAt(i);
-            currentChar == '.' ? squares++ : treesEncountered++;
+        if (map[i].length > currentTile) {
+            let currentChar = map[i].charAt(currentTile);
+            currentChar === '.' ? squares++ : treesEncountered++;
             currentTile += 3;
         } else {
             while (map[i].length < currentTile) {
                 map[i] = map[i]+map[i];
             }
-            if (map[i].charAt(currentTile) != undefined) {
-                let currentChar = map[i].charAt(i);
-                currentChar == '.' ? squares++ : treesEncountered++;
+                let currentChar = map[i].charAt(currentTile);
+                currentChar === '.' ? squares++ : treesEncountered++;
                 currentTile += 3;
-            }   
-
+            }
         }
-    }
     console.log(`There are ${treesEncountered} trees hit.`);
 }
