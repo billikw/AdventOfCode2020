@@ -320,11 +320,9 @@ const input = `.........#....#.###.........##.
 .#.....#..#..#......#....#.#...
 ...#..........................#
 ............#.#..#.##......#...
-.....#..........#.#........#.#.
-`;
+.....#..........#.#........#.#.`;
 
 let map = Array.from(input.split(`\n`));
-map.pop(); // Gets rid of the rogue blank array element at the end, due to splitting on newline.
 
 function detectTrees() {
     let currentTile = 0;
